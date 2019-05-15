@@ -17,16 +17,17 @@ public class Team : MonoBehaviour
         public int money; //бюджет команды
 
 
-        public TeamClass()
+        public TeamClass(string n, double x)
         {
-           
+            name = n;
+            l = x;
         }
     }
 
     public class Champ //класс турнира 
     {
-        public List<Game> games;
-        public List<TeamClass> teams;
+        public List<Game> games =new List<Game>();
+        public List<TeamClass> teams =new List<TeamClass>();
         public TeamClass myteam;
 
         public Champ(TeamClass t)
@@ -41,11 +42,10 @@ public class Team : MonoBehaviour
             for (int i=0; i < 3; i++)
             {
                 System.Random rnd = new System.Random();
-                int f = rnd.Next();
-                TeamClass t = new TeamClass();
-                t.name = country[rnd.Next(country.Length)];
-                t.l = rnd.Next(30, 60);
-                teams.Add(t);
+                //TeamClass t = new TeamClass(country[rnd.Next(country.Length)], rnd.Next(30, 60));
+                //t.name = country[rnd.Next(country.Length)];
+                //t.l = rnd.Next(30, 60);
+                teams.Add(new TeamClass(country[rnd.Next(country.Length)], rnd.Next(30, 60)));
             }
         }
     }
@@ -70,13 +70,13 @@ public class Team : MonoBehaviour
             {
                 x1 = Puasson(team1.l, i);
                 x2 = Puasson(team2.l, i);
-                if (x1 > 0)
+                if (x1 > 0 && x1<=1)
                 {
                    p1.Add(i, x1);
                 }
-                if (x2 > 0)
+                if (x2 > 0 && x2 <= 1)
                 {
-                    p1.Add(i, x2);
+                    p2.Add(i, x2);
                 }
             }
 
@@ -105,7 +105,8 @@ public class Team : MonoBehaviour
             while (x1 > 0)
             {
                 i++;
-                x1 -= p1[i];
+                if ( p1.ContainsKey(i))
+                    x1 -= p1[i];
             }
             return i;
         }
@@ -116,9 +117,9 @@ public class Team : MonoBehaviour
             return x;
         }
 
-        public int F(int z)
+        public double F(int z)
         {
-            int s = 1;
+            double s = 1;
             for (int i = z; i > 1; i--)
                 s *= i;
             return s;
@@ -129,7 +130,14 @@ public class Team : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TeamClass my = new TeamClass("Россия", 60);
+        Champ n = new Champ(my);
+        n.GenerateTeams();
+        Game g = new Game(n.teams[2], n.teams[3]);
+        g.PlayGame();
+        n.games.Add(g);
+
+
     }
 
     // Update is called once per frame
