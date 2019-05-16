@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class Team : MonoBehaviour
 {
-    public Button playChamp;
-
 
     public class TeamClass //класс команды 
     {
@@ -17,7 +15,7 @@ public class Team : MonoBehaviour
         public double attack;// коэффицент атаки
         public double defence; //  коэффицент защиты
         public int n; // количество матчей 
-        public int goals; //  количество пропущенных мячей
+        public int goals; //  количество забитых мячей
         public int missed; // количество пропущенных мячей
         public string name; // Название команды
         public int money; //бюджет команды
@@ -45,7 +43,7 @@ public class Team : MonoBehaviour
             teams.Add(myteam);
         }
 
-        public void GenerateTeams()
+        public void GenerateTeams(int min, int max)
         {
             System.Random rnd = new System.Random();
             string[] country = { "Франция", "Германия", "США", "Италия", "Испания", "Бельгия", "Польша", "Китай", "Япония" }; ;
@@ -54,7 +52,7 @@ public class Team : MonoBehaviour
                 //TeamClass t = new TeamClass(country[rnd.Next(country.Length)], rnd.Next(30, 60));
                 //t.name = country[rnd.Next(country.Length)];
                 //t.l = rnd.Next(30, 60);
-                teams.Add(new TeamClass(country[rnd.Next(country.Length)] + "_" + (i + 1), rnd.Next(30, 60)));
+                teams.Add(new TeamClass(country[rnd.Next(country.Length)] + "_" + (i + 1), rnd.Next(min, max)));
             }
         }
 
@@ -155,13 +153,18 @@ public class Team : MonoBehaviour
     public List<Text> team_text = new List<Text>();
     public List<Text> place_text = new List<Text>();
     public GameObject t1,t2;
+    public Button playChamp;
+    public Dropdown choose;
+    public Text warning;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        System.Random rnd = new System.Random();
         Change_canvas(true, false);
-        my = new TeamClass("Россия", 30);
+        my = new TeamClass("Россия", rnd.Next(30,35));
         //Champ n = new Champ(my);
         //n.GenerateTeams();
         //Game g = new Game(n.teams[2], n.teams[3]);
@@ -181,13 +184,39 @@ public class Team : MonoBehaviour
 
     void StartChamp()
     {
-        Change_canvas(false, true);
-        n = new Champ(my);
-        n.GenerateTeams();
-
-        for (int i=0; i<n.teams.Count;i++)
+        int min=30, max=65;
+        if (choose.value > 0)
         {
-            team_text[i].text = n.teams[i].name;
+            warning.text = "";
+
+            if (choose.value == 1)
+            {
+                min = 30;
+                max = 45;
+            }
+            else if (choose.value == 2)
+            {
+                min = 40;
+                max = 55;
+            }
+            else if (choose.value == 3)
+            {
+                min = 50;
+                max = 65;
+            }
+
+            Change_canvas(false, true);
+            n = new Champ(my);
+            n.GenerateTeams(min, max);
+
+            for (int i = 0; i < n.teams.Count; i++)
+            {
+                team_text[i].text = n.teams[i].name;
+            }
+        }
+        else
+        {
+            warning.text = "Choose level!";
         }
 
         //SceneManager.LoadScene("Champ");
