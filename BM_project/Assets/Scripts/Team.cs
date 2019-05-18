@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System.Linq;
 
 public class Team : MonoBehaviour
 {
@@ -12,27 +12,31 @@ public class Team : MonoBehaviour
     public class TeamClass //класс команды 
     {
         public double l; //рейтинг команды (лямбда в распределении)
-        public double attack;// коэффицент атаки
-        public double defence; //  коэффицент защиты
+        public int place; // место, занятое командой
+        public int number; // номер команды
         public int n; // количество матчей 
         public int goals; //  количество забитых мячей
         public int missed; // количество пропущенных мячей
         public string name; // Название команды
-        public int money; //бюджет команды
-        public int points; // количесвто очков в турнире
+        public int money=1000; //бюджет команды
+        public int points; // количество очков в турнире
 
 
-        public TeamClass(string n, double x)
+        public TeamClass(string n, double x, int num)
         {
             name = n;
             l = x;
+            number = num;
         }
+
+        
 
     }
 
     public class Champ //класс турнира 
     {
         public int val_game;
+        public int y; 
         public List<Game> games = new List<Game>();
         public List<TeamClass> teams = new List<TeamClass>();
         public TeamClass myteam;
@@ -52,10 +56,9 @@ public class Team : MonoBehaviour
                 //TeamClass t = new TeamClass(country[rnd.Next(country.Length)], rnd.Next(30, 60));
                 //t.name = country[rnd.Next(country.Length)];
                 //t.l = rnd.Next(30, 60);
-                teams.Add(new TeamClass(country[rnd.Next(country.Length)] + "_" + (i + 1), rnd.Next(min, max)));
+                teams.Add(new TeamClass(country[rnd.Next(country.Length)] + "_" + (i + 1), rnd.Next(min, max), i+1));
             }
         }
-
     }
 
     public class Game // класс игры
@@ -164,7 +167,7 @@ public class Team : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         Change_canvas(true, false);
-        my = new TeamClass("Россия", rnd.Next(30,35));
+        my = new TeamClass("Россия", rnd.Next(30,35), 0);
         //Champ n = new Champ(my);
         //n.GenerateTeams();
         //Game g = new Game(n.teams[2], n.teams[3]);
@@ -193,6 +196,7 @@ public class Team : MonoBehaviour
             {
                 min = 30;
                 max = 45;
+
             }
             else if (choose.value == 2)
             {
@@ -231,11 +235,34 @@ public class Team : MonoBehaviour
         n.games.Add(g);
         n.val_game++;
 
+        n.teams[i].goals += g.o1;
+        n.teams[j].goals += g.o2;
+
+        n.teams[j].missed += g.o1;
+        n.teams[i].missed += g.o2;
+
 
         points_text[s].text = g.o1 + ":" + g.o2;
         points_text[f].text = g.o2 + ":" + g.o1;
         oh[i].text = n.teams[i].points.ToString();
         oh[j].text = n.teams[j].points.ToString();
+
+
+
+        if (n.val_game == 6)
+        {
+            var t = n.teams.OrderByDescending(u => u.points).ThenByDescending(u => (u.goals - u.missed));
+
+            int o = 1;
+            foreach (TeamClass u in t)
+            {
+                n.teams[u.number].place = o;
+                place_text[u.number].text = o.ToString();
+                o++;
+            }
+
+
+        }
     }
 
     void Change_canvas(bool f1, bool f2)
