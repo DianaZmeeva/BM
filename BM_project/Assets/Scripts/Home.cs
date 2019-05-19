@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Home : MonoBehaviour
 {
-    public void OnMouseDown()
+    void OnMouseDown()
     {
         SceneManager.LoadScene("Start");
     }
