@@ -14,6 +14,7 @@ public class Team : MonoBehaviour
         public double l; //рейтинг команды (лямбда в распределении)
         public int place; // место, занятое командой
         public int number; // номер команды
+        public int n; // количество матчей 
         public int goals; //  количество забитых мячей
         public int missed; // количество пропущенных мячей
         public string name; // Название команды
@@ -115,6 +116,7 @@ public class Team : MonoBehaviour
                 team1.wins_in_champ++;
                 team2.points += 1;
                 team2.failed_in_champ++;
+                team2.points += 1;
 
             }
             else
@@ -123,6 +125,7 @@ public class Team : MonoBehaviour
                 team2.wins_in_champ++;
                 team1.points += 1;
                 team1.failed_in_champ++;
+                team1.points += 1;
             }
         }
 
@@ -162,6 +165,7 @@ public class Team : MonoBehaviour
     public List<Text> oh = new List<Text>();
     public List<Text> team_text = new List<Text>();
     public List<Text> place_text = new List<Text>();
+
     public GameObject t1,t2,t3,t4;
     public Button playChamp, back_to_team, statistic;
     public Dropdown choose;
@@ -175,12 +179,23 @@ public class Team : MonoBehaviour
     public List<Text> g_text = new List<Text>();
     public List<Text> o_text = new List<Text>();
 
+    public GameObject t1,t2;
+    public Button playChamp;
+    public Dropdown choose;
+    public Text warning;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         System.Random rnd = new System.Random();
+
         Change_canvas(true, false, false, false);
+
+        Change_canvas(true, false);
+
         my = new TeamClass("Россия", rnd.Next(30,35), 0);
         //Champ n = new Champ(my);
         //n.GenerateTeams();
@@ -191,8 +206,10 @@ public class Team : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject);
         Button start = playChamp.GetComponent<Button>();
         start.onClick.AddListener(StartChamp);
+
         back_to_team.onClick.AddListener(Back);
         statistic.onClick.AddListener(Statistic);
+
         points_buttons[0].onClick.AddListener(() => play(0, 1, 0, 3, 0));
         points_buttons[1].onClick.AddListener(() => play(0, 2, 1, 6, 1));
         points_buttons[2].onClick.AddListener(() => play(0, 3, 2, 9, 2));
@@ -200,6 +217,7 @@ public class Team : MonoBehaviour
         points_buttons[4].onClick.AddListener(() => play(1, 3, 4,10, 5));
         points_buttons[5].onClick.AddListener(() => play(2, 3, 5, 11, 8));
     }
+
 
     private void Statistic()
     {
@@ -222,6 +240,7 @@ public class Team : MonoBehaviour
         Clear();
         Change_canvas(true, false, false, false);
     }
+
 
     void StartChamp()
     {
@@ -248,6 +267,9 @@ public class Team : MonoBehaviour
             }
 
             Change_canvas(false, true, false, false);
+
+            Change_canvas(false, true);
+
             n = new Champ(my);
             n.GenerateTeams(min, max);
 
@@ -297,6 +319,7 @@ public class Team : MonoBehaviour
                 place_text[u.number].text = o.ToString();
                 o++;
             }
+
             Change_canvas(false, true, true,false);
         }
     }
@@ -343,3 +366,14 @@ public class Team : MonoBehaviour
         my.failed += my.failed_in_champ;
     }
 } 
+
+
+    void Change_canvas(bool f1, bool f2)
+    {
+        GameObject temp = GameObject.Find("Canvas_team") as GameObject;
+        t1.SetActive(f1);
+
+        GameObject temp2 = GameObject.Find("Canvas_Champ") as GameObject;
+        t2.SetActive(f2);
+    }
+
