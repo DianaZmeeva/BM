@@ -331,7 +331,6 @@ public class Team : MonoBehaviour
             warning.text = "Choose level!";
         }
 
-        //SceneManager.LoadScene("Champ");
     }
 
     void play(int i, int j, int b, int f, int s)
