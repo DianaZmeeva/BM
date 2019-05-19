@@ -14,11 +14,10 @@ public class Team : MonoBehaviour
         public double l; //рейтинг команды (лямбда в распределении)
         public int place; // место, занятое командой
         public int number; // номер команды
-        public int n; // количество матчей 
         public int goals; //  количество забитых мячей
         public int missed; // количество пропущенных мячей
         public string name; // Название команды
-        public int money=1000; //бюджет команды
+        public int money=100; //бюджет команды
         public int points; // количество очков в турнире
         public int wins_in_champ;
         public int failed_in_champ;
@@ -32,9 +31,6 @@ public class Team : MonoBehaviour
             l = x;
             number = num;
         }
-
-        
-
     }
 
     public class Champ //класс турнира 
@@ -116,7 +112,6 @@ public class Team : MonoBehaviour
                 team1.wins_in_champ++;
                 team2.points += 1;
                 team2.failed_in_champ++;
-                team2.points += 1;
 
             }
             else
@@ -125,7 +120,6 @@ public class Team : MonoBehaviour
                 team2.wins_in_champ++;
                 team1.points += 1;
                 team1.failed_in_champ++;
-                team1.points += 1;
             }
         }
 
@@ -165,9 +159,8 @@ public class Team : MonoBehaviour
     public List<Text> oh = new List<Text>();
     public List<Text> team_text = new List<Text>();
     public List<Text> place_text = new List<Text>();
-
     public GameObject t1,t2,t3,t4;
-    public Button playChamp, back_to_team, statistic;
+    public Button playChamp, back_to_team, statistic, to_champ, up;
     public Dropdown choose;
     public Text warning;
 
@@ -179,24 +172,17 @@ public class Team : MonoBehaviour
     public List<Text> g_text = new List<Text>();
     public List<Text> o_text = new List<Text>();
 
-    public GameObject t1,t2;
-    public Button playChamp;
-    public Dropdown choose;
-    public Text warning;
-
-
+    public Text m, w, fa, r, money_text;
 
 
     // Start is called before the first frame update
     void Start()
     {
         System.Random rnd = new System.Random();
-
         Change_canvas(true, false, false, false);
+        my = new TeamClass("Россия", rnd.Next(29,35), 0);
+        Write_about_team();
 
-        Change_canvas(true, false);
-
-        my = new TeamClass("Россия", rnd.Next(30,35), 0);
         //Champ n = new Champ(my);
         //n.GenerateTeams();
         //Game g = new Game(n.teams[2], n.teams[3]);
@@ -206,10 +192,10 @@ public class Team : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject);
         Button start = playChamp.GetComponent<Button>();
         start.onClick.AddListener(StartChamp);
-
         back_to_team.onClick.AddListener(Back);
+        to_champ.onClick.AddListener(Back_to_champ);
         statistic.onClick.AddListener(Statistic);
-
+        up.onClick.AddListener(() => Up_team(1));
         points_buttons[0].onClick.AddListener(() => play(0, 1, 0, 3, 0));
         points_buttons[1].onClick.AddListener(() => play(0, 2, 1, 6, 1));
         points_buttons[2].onClick.AddListener(() => play(0, 3, 2, 9, 2));
@@ -218,6 +204,61 @@ public class Team : MonoBehaviour
         points_buttons[5].onClick.AddListener(() => play(2, 3, 5, 11, 8));
     }
 
+    private void Up_team(int i)
+    {
+
+        if (my.l == 73)
+        {
+            money_text.text = "Вы достигли максимума!";
+            money_text.color = Color.red;
+            up.enabled = false;
+        }
+        else
+        {
+            if (my.l < 40)
+            {
+                p(10,i);
+            }
+           else if (my.l < 50)
+            {
+                p(100,i);
+            }
+            else if(my.l<60)
+            {
+                p(1000,i);
+            }
+        }
+        Write_about_team();
+    }
+
+    private void p(int v, int i)
+    {
+        if (my.money >= v || i==0)
+        {
+            my.money -= v;
+            my.l += i;
+
+            if((my.l==40 || my.l==50 || my.l==60) && (i==1))
+            {
+                money_text.text = "Стоимость: " +(v*10);
+            
+            }
+            else
+            {
+                money_text.text = "Стоимость: " + v;
+            }
+            money_text.color = Color.black;
+            if (i == 0)
+            {
+                my.money += v;
+            }
+        }
+        if (my.money < v && i==1)
+        {
+            money_text.text = "Недостаточно средств!";
+            money_text.color = Color.red;
+        }
+    }
 
     private void Statistic()
     {
@@ -234,16 +275,24 @@ public class Team : MonoBehaviour
         }
     }
 
+    private void Back_to_champ()
+    {
+        Change_canvas(false, true, true, false);
+    }
+
     void Back()
     {
+        Up_team(0);
         Change_my_team();
+        Write_about_team();
         Clear();
         Change_canvas(true, false, false, false);
     }
 
-
     void StartChamp()
     {
+        n = new Champ(my);
+
         int min=30, max=65;
         if (choose.value > 0)
         {
@@ -253,24 +302,23 @@ public class Team : MonoBehaviour
             {
                 min = 30;
                 max = 45;
+                n.y = 1;
 
             }
             else if (choose.value == 2)
             {
                 min = 40;
                 max = 55;
+                n.y = 10;
             }
             else if (choose.value == 3)
             {
                 min = 50;
-                max = 65;
+                max = 73;
+                n.y = 100;
             }
 
             Change_canvas(false, true, false, false);
-
-            Change_canvas(false, true);
-
-            n = new Champ(my);
             n.GenerateTeams(min, max);
 
             for (int i = 0; i < n.teams.Count; i++)
@@ -319,7 +367,6 @@ public class Team : MonoBehaviour
                 place_text[u.number].text = o.ToString();
                 o++;
             }
-
             Change_canvas(false, true, true,false);
         }
     }
@@ -364,16 +411,21 @@ public class Team : MonoBehaviour
     {
         my.wins += my.wins_in_champ;
         my.failed += my.failed_in_champ;
+
+        if(my.place==3)
+            my.money += 10 * n.y;
+        if (my.place == 2)
+            my.money += 20 * n.y;
+        if (my.place == 1)
+            my.money += 30 * n.y;
+
+    }
+
+     public void Write_about_team()
+    {
+        r.text= Math.Round(((my.l * 100) / 73), 1) + "%";
+        m.text = my.money.ToString();
+        w.text = my.wins.ToString();
+        fa.text = my.failed.ToString();
     }
 } 
-
-
-    void Change_canvas(bool f1, bool f2)
-    {
-        GameObject temp = GameObject.Find("Canvas_team") as GameObject;
-        t1.SetActive(f1);
-
-        GameObject temp2 = GameObject.Find("Canvas_Champ") as GameObject;
-        t2.SetActive(f2);
-    }
-
