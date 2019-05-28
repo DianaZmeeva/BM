@@ -19,11 +19,10 @@ public class Team : MonoBehaviour
         public string name; // Название команды
         public int money=100; //бюджет команды
         public int points; // количество очков в турнире
-        public int wins_in_champ;
-        public int failed_in_champ;
-        public int wins;
-        public int failed;
-
+        public int wins_in_champ; // количество побед в турнире
+        public int failed_in_champ; //количесвто поражений в турнире
+        public int wins; //количество побед всего
+        public int failed; //количество поражений всего
 
         public TeamClass(string n, double x, int num)
         {
@@ -35,11 +34,11 @@ public class Team : MonoBehaviour
 
     public class Champ //класс турнира 
     {
-        public int val_game;
-        public int y; 
-        public List<Game> games = new List<Game>();
-        public List<TeamClass> teams = new List<TeamClass>();
-        public TeamClass myteam;
+        public int val_game; //количество игр в турнире 
+        public int y;  //коэффицент заработка за турнир (используется при подсчете призовых денег за турнир)
+        public List<Game> games = new List<Game>(); // игры турнира
+        public List<TeamClass> teams = new List<TeamClass>(); //команды, участвующие в турнире
+        public TeamClass myteam; //комнада игрока
 
         public Champ(TeamClass t)
         {
@@ -47,6 +46,7 @@ public class Team : MonoBehaviour
             teams.Add(myteam);
         }
 
+        //функция создания команд-соперников на турнир (задание имени, рейтинга команды (в пределах min-max), номера команды)
         public void GenerateTeams(int min, int max)
         {
             System.Random rnd = new System.Random();
@@ -63,7 +63,7 @@ public class Team : MonoBehaviour
 
     public class Game // класс игры
     {
-        double x1, x2;
+        double x1, x2; 
         public TeamClass team1, team2; // индексы команд
         public int o1, o2; //очки команд
         public Game(TeamClass i, TeamClass j)
@@ -77,9 +77,10 @@ public class Team : MonoBehaviour
             Dictionary<int, double> p1 = new Dictionary<int, double>(); //словарь вероятностей для команды 1 
             Dictionary<int, double> p2 = new Dictionary<int, double>(); //словарь вероятностей для команды 1 
 
+            //расчет словаря вероятностей для обеих команд
             for (int i = 0; i < 100; i++)
             {
-                x1 = Puasson(team1.l, i);
+                x1 = Puasson(team1.l, i); 
                 x2 = Puasson(team2.l, i);
                 if (x1 > 0 && x1 <= 1)
                 {
@@ -90,13 +91,17 @@ public class Team : MonoBehaviour
                     p2.Add(i, x2);
                 }
             }
-
+            // определения количества очков, забитых командами (o1, o2 для команд team1, team2 соответсвенно)
             o1 = Goal_Generate(p1);
             o2 = Goal_Generate(p2);
+
+            //если одна из коианд забила 0 очков - присваивается техническое поражение (счет 20:0)
             if (o1 == 0)
                 o2 = 20;
             if (o2 == 0)
                 o1 = 20;
+
+            //при равенстве очков команда-победитель выбирается случайно (метод "побрасывание монетки")
             if (o1 == o2)
             {
                 System.Random rnd = new System.Random();
@@ -106,6 +111,8 @@ public class Team : MonoBehaviour
                 else
                     o2 += 2;
             }
+            
+            // изменение показателей команд (очков за турнир, побед и поражений в турнире)
             if (o1 > o2)
             {
                 team1.points += 2;
@@ -123,6 +130,7 @@ public class Team : MonoBehaviour
             }
         }
 
+        //генератор Пуассоновского распределения
         private int Goal_Generate(Dictionary<int, double> p1)
         {
             System.Random rnd = new System.Random();
@@ -136,13 +144,15 @@ public class Team : MonoBehaviour
             }
             return i;
         }
-
+        
+        //расчет вероятностей забития m очков командой с рейтингом l по Пуассоновскому распределению 
         public double Puasson(double l, int m)
         {
             double x = (Math.Pow(l, m) / F(m)) * Math.Exp(-l);
             return x;
         }
 
+        // функция рассчета факториала
         public double F(int z)
         {
             double s = 1;
@@ -152,27 +162,34 @@ public class Team : MonoBehaviour
         }
     }
 
-    TeamClass my;
+    TeamClass my; // команда игрока
     Champ n;
-    public List<Button> points_buttons = new List<Button>();
-    public List<Text> points_text = new List<Text>();
-    public List<Text> oh = new List<Text>();
-    public List<Text> team_text = new List<Text>();
-    public List<Text> place_text = new List<Text>();
-    public GameObject t1,t2,t3,t4;
-    public Button playChamp, back_to_team, statistic, to_champ, up;
-    public Dropdown choose;
-    public Text warning;
 
-    public List<Text> t_text = new List<Text>();
-    public List<Text> pl_text = new List<Text>();
-    public List<Text> po_text = new List<Text>();
-    public List<Text> w_text = new List<Text>();
-    public List<Text> l_text = new List<Text>();
-    public List<Text> g_text = new List<Text>();
-    public List<Text> o_text = new List<Text>();
+    //UI-элементы для турнира (CanvasChamp)
+    public List<Button> points_buttons = new List<Button>(); //кнопки - "Играть" для игр между командами
+    public List<Text> points_text = new List<Text>();  //текстовые поля - очки за игру для игр для игр между командами
+    public List<Text> oh = new List<Text>(); // текстовые поля - очки команд в турнире 
+    public List<Text> team_text = new List<Text>(); // текстовые поля - названия команд
+    public List<Text> place_text = new List<Text>(); // текстовые поля - места команд в тунире
 
-    public Text m, w, fa, r, money_text;
+    //общие UI-элементы 
+    public GameObject t1,t2,t3,t4;//объекты Canvas (t1-CanvasTeam, t2-CanvasChamp, t3-PanelMenu, t4-CanvasStatistic)
+    public Button playChamp, back_to_team, statistic, to_champ; //кнопки - переходы между Canvas
+
+    //UI-элементы для вывода статистики команд (CanvasStatistic)
+    public List<Text> t_text = new List<Text>();  // текстовые поля - названия команд
+    public List<Text> pl_text = new List<Text>();// текстовые поля - места команд
+    public List<Text> po_text = new List<Text>();// текстовые поля - количество очков в турнире
+    public List<Text> w_text = new List<Text>();// текстовые поля - количество побед
+    public List<Text> l_text = new List<Text>();// текстовые поля - количество поражений
+    public List<Text> g_text = new List<Text>(); // текстовые поля - количество забитыхочков(мячей) 
+    public List<Text> o_text = new List<Text>();// текстовые поля - количество пропущенных очков(мячей)
+
+    //UI-элементы для команды игрока (CanvasTeam)
+    public Text m, w, fa, r, money_text; // тектсовые поля - бюджет, победы, поражения, рейтинг, стоимость прокачки команды (соответсвенно)
+    public Button up; // кнопка - увеличения рейтинга команды (прокачка команды)
+    public Dropdown choose; //dropdown - выбор уровня турнира
+    public Text warning;  //текстовое поле - ошибка (отсутвие выбранного уровня сложности)
 
 
     // Start is called before the first frame update
@@ -180,6 +197,9 @@ public class Team : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         Change_canvas(true, false, false, false);
+       
+
+        //создание команды игрока
         my = new TeamClass("Россия", rnd.Next(29,35), 0);
         Write_about_team();
 
@@ -188,8 +208,9 @@ public class Team : MonoBehaviour
         //Game g = new Game(n.teams[2], n.teams[3]);
         //g.PlayGame();
         //n.games.Add(g);
-
         //DontDestroyOnLoad(this.gameObject);
+
+        //обработчики нажатия кнопок
         Button start = playChamp.GetComponent<Button>();
         start.onClick.AddListener(StartChamp);
         back_to_team.onClick.AddListener(Back);
@@ -204,6 +225,7 @@ public class Team : MonoBehaviour
         points_buttons[5].onClick.AddListener(() => play(2, 3, 5, 11, 8));
     }
 
+    //функция прокачки команды  (i - служебная переменная, для определения места выхова функции)
     private void Up_team(int i)
     {
 
@@ -231,6 +253,7 @@ public class Team : MonoBehaviour
         Write_about_team();
     }
 
+    //функция изменения текстового поля money_text
     private void p(int v, int i)
     {
         if (my.money >= v || i==0)
@@ -260,6 +283,7 @@ public class Team : MonoBehaviour
         }
     }
 
+    // функция вывода статистики команд в турнире
     private void Statistic()
     {
         Change_canvas(false, false, false, true);
@@ -275,25 +299,30 @@ public class Team : MonoBehaviour
         }
     }
 
+    //функция возвращения обратно к таблице турнира
     private void Back_to_champ()
     {
-        Change_canvas(false, true, true, false);
+        Change_canvas(false, true, true, false); //изменения отображения Canvas
     }
 
+    //функция возвращения обратно к команде игрока
     void Back()
     {
-        Up_team(0);
-        Change_my_team();
-        Write_about_team();
-        Clear();
-        Change_canvas(true, false, false, false);
+        Up_team(0); //вызов функции (со значение 0) - для вывода стоимости, необходимой для прокачки команды
+        Change_my_team(); //изменения значений комнады после турнира
+        Write_about_team(); //изменение UI-элементов о команде
+        Clear(); // очищение таблицы-турнира
+        Change_canvas(true, false, false, false);//изменения отображения Canvas
     }
 
+    //функция старта турнира
     void StartChamp()
     {
         n = new Champ(my);
 
         int min=30, max=65;
+
+        //определения уровня турнира (рейтинг команд, изменение коэффицента заработка за турнир)
         if (choose.value > 0)
         {
             warning.text = "";
@@ -318,60 +347,63 @@ public class Team : MonoBehaviour
                 n.y = 100;
             }
 
-            Change_canvas(false, true, false, false);
-            n.GenerateTeams(min, max);
+            Change_canvas(false, true, false, false);//открытие таблицы-турнира
+            n.GenerateTeams(min, max); //генерация команд соперников
 
-            for (int i = 0; i < n.teams.Count; i++)
+            for (int i = 0; i < n.teams.Count; i++) 
             {
-                team_text[i].text = n.teams[i].name;
+                team_text[i].text = n.teams[i].name;//вывод списка комнад участников турнира
             }
         }
-        else
+        else //если уровень не выбран, показать сообщение об ошибке
         {
             warning.text = "Choose level!";
         }
 
     }
 
-    void play(int i, int j, int b, int f, int s)
+    //функция игры между 2 комадами
+    void play(int i, int j, int b, int f, int s)// i,j-номер команд; b-номер кнопки в массиве; f,s - номера тектовых полей для вывода счета
     {
         points_buttons[b].enabled = false;
 
+        //выяснение результатов игры 
         Game g = new Game(n.teams[i], n.teams[j]);
         g.PlayGame();
         n.games.Add(g);
+
         n.val_game++;
 
+        //вывод текстовых значений об игре
         n.teams[i].goals += g.o1;
         n.teams[j].goals += g.o2;
-
         n.teams[j].missed += g.o1;
         n.teams[i].missed += g.o2;
-
         points_text[s].text = g.o1 + ":" + g.o2;
         points_text[f].text = g.o2 + ":" + g.o1;
         oh[i].text = n.teams[i].points.ToString();
         oh[j].text = n.teams[j].points.ToString();
 
-
-
-        if (n.val_game == 6)
+        if (n.val_game == 6) //проверка: является ли игра последней в турнире
         {
-            var t = n.teams.OrderByDescending(u => u.points).ThenByDescending(u => (u.goals - u.missed));
+            var t = n.teams.OrderByDescending(u => u.points).ThenByDescending(u => (u.goals - u.missed)); //сортировка команд по местам (по количесвту очков; при равенстве таковых по разнице забитых-пропущенных)
 
             int o = 1;
-            foreach (TeamClass u in t)
+            foreach (TeamClass u in t) //отображение результатов турнира
             {
                 n.teams[u.number].place = o;
                 place_text[u.number].text = o.ToString();
                 o++;
             }
-            Change_canvas(false, true, true,false);
+            Change_canvas(false, true, true,false);//отображение PanelMenu
         }
     }
 
+    //функция очистки турнира
     private void Clear()
     {
+        //очистка текстовых поле таблици-турнира
+
         for (int i=0; i<points_buttons.Count; i++)
         {
             points_buttons[i].enabled = true;
@@ -389,6 +421,7 @@ public class Team : MonoBehaviour
             place_text[i].text = "";
         }
 
+        //очистка турнирных показателей команды игрока
         my.goals = 0;
         my.missed = 0;
         my.points = 0;
@@ -397,6 +430,7 @@ public class Team : MonoBehaviour
         my.failed_in_champ = 0;
     }
 
+    //изменение отображения Canvas
     void Change_canvas(bool f1, bool f2, bool f3, bool f4)
     {
         //GameObject t1 = GameObject.Find("Canvas_team") as GameObject;
@@ -406,12 +440,15 @@ public class Team : MonoBehaviour
         t4.SetActive(f4);
     }
 
+    //функция изменения показателей команды игрока после турнира 
     private void Change_my_team()
     {
+        //измененеие количества побед/поражений
         my.wins += my.wins_in_champ;
         my.failed += my.failed_in_champ;
 
-        if(my.place==3)
+        //измененение бюджета команды игрока при занятии призового места
+        if (my.place==3)
             my.money += 10 * n.y;
         if (my.place == 2)
             my.money += 20 * n.y;
@@ -420,9 +457,11 @@ public class Team : MonoBehaviour
 
     }
 
-     public void Write_about_team()
+    //измененение тектовой информации о команде игрока  (на экране CanvasTeam)
+    public void Write_about_team()
     {
-        r.text= Math.Round(((my.l * 100) / 73), 1) + "%";
+        r.text= Math.Round(((my.l * 100) / 73), 1) + "%"; //подсчет рейтинга команды в процентах
+
         m.text = my.money.ToString();
         w.text = my.wins.ToString();
         fa.text = my.failed.ToString();

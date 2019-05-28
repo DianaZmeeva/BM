@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
+    //выход из игры
     void OnMouseDown()
     {
         Application.Quit();

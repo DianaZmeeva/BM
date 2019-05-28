@@ -13,17 +13,20 @@ public class Menu : MonoBehaviour
         aboutButton.onClick.AddListener(About);
         exitButton.onClick.AddListener(Ex);
     }
-
+    
+    //открытие cцены Игры
     void StartLevel()
     {
         SceneManager.LoadScene("SampleScene");
     }
 
+    //открытие cцены ОБ Игре
     void About()
     {
         SceneManager.LoadScene("AboutScene");
     }
 
+    //выход из игры
     void Ex()
     {
         Application.Quit();
