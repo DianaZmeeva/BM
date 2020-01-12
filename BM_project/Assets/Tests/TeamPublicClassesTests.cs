@@ -32,7 +32,7 @@ namespace Tests
         {
             Team.Game testGameClass= new Team.Game(_myRussiaTestTeam, _myRussiaTestTeam);
 
-            var result = testGameClass.F(1);
+            var result = testGameClass.GetFactorial(1);
 
             Assert.AreEqual(1, result);
         }
@@ -42,7 +42,7 @@ namespace Tests
         {
             Team.Game testGameClass = new Team.Game(_myRussiaTestTeam, _myRussiaTestTeam);
 
-            var result = testGameClass.F(0);
+            var result = testGameClass.GetFactorial(0);
 
             Assert.AreEqual(1, result);
         }
@@ -52,7 +52,7 @@ namespace Tests
         {
             Team.Game testGameClass = new Team.Game(_myRussiaTestTeam, _myRussiaTestTeam);
 
-            var result = testGameClass.F(5);
+            var result = testGameClass.GetFactorial(5);
 
             Assert.AreEqual(120, result);
         }

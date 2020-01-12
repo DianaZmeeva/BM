@@ -26,8 +26,8 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreNotEqual(0, gameclass.o1);
-            Assert.AreNotEqual(0, gameclass.o2);
+            Assert.AreNotEqual(0, gameclass.FirstTeamPoints);
+            Assert.AreNotEqual(0, gameclass.SecondTeamPoints);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(true, gameclass.o1>gameclass.o2);
+            Assert.AreEqual(true, gameclass.FirstTeamPoints>gameclass.SecondTeamPoints);
         }
 
         [Test]
@@ -51,8 +51,8 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(1, gameclass.team1.WinsInChamp);
-            Assert.AreEqual(1, gameclass.team2.DefeatsInChamp);
+            Assert.AreEqual(1, gameclass.FirstTeamInGame.WinsInChamp);
+            Assert.AreEqual(1, gameclass.SecondTeamInGame.DefeatsInChamp);
         }
 
         [Test]
@@ -64,8 +64,8 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(2, gameclass.team1.PointsInChamp);
-            Assert.AreEqual(1, gameclass.team2.PointsInChamp);
+            Assert.AreEqual(2, gameclass.FirstTeamInGame.PointsInChamp);
+            Assert.AreEqual(1, gameclass.SecondTeamInGame.PointsInChamp);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(true, gameclass.o1 < gameclass.o2);
+            Assert.AreEqual(true, gameclass.FirstTeamPoints < gameclass.SecondTeamPoints);
         }
 
         [Test]
@@ -89,8 +89,8 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(1, gameclass.team2.WinsInChamp);
-            Assert.AreEqual(1, gameclass.team1.DefeatsInChamp);
+            Assert.AreEqual(1, gameclass.SecondTeamInGame.WinsInChamp);
+            Assert.AreEqual(1, gameclass.FirstTeamInGame.DefeatsInChamp);
         }
 
         [Test]
@@ -102,8 +102,8 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(2, gameclass.team2.PointsInChamp);
-            Assert.AreEqual(1, gameclass.team1.PointsInChamp);
+            Assert.AreEqual(2, gameclass.SecondTeamInGame.PointsInChamp);
+            Assert.AreEqual(1, gameclass.FirstTeamInGame.PointsInChamp);
         }
 
         [Test]
@@ -115,8 +115,8 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(true, gameclass.o1 == 20 || gameclass.o2 == 20);
-            Assert.AreEqual(true, gameclass.o1 == 0 || gameclass.o2 == 0);
+            Assert.AreEqual(true, gameclass.FirstTeamPoints == 20 || gameclass.SecondTeamPoints == 20);
+            Assert.AreEqual(true, gameclass.FirstTeamPoints == 0 || gameclass.SecondTeamPoints == 0);
         }
 
         private void InitializeTeams()
