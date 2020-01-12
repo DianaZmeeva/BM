@@ -382,6 +382,32 @@ public class SportManagerController : MonoBehaviour
 
     
     void play(int numberOfFirstTeam, int numberOfSecondTeam, int numberOfButtonPlay, int numberOfFirstTeamPointsText, int numberOfSecondTeamPointsText)
+    {
+        ListOfButtonGame[numberOfButtonPlay].enabled = false;
+
+        Game newGame = new Game(_currentChamp.TeamsInChamp[numberOfFirstTeam], _currentChamp.TeamsInChamp[numberOfSecondTeam]);
+        newGame.PlayGame();
+        _currentChamp.GamesInChamp.Add(newGame);
+
+        _currentChamp.NumberOfPlayedGames++;
+
+        ChangeStringFieldsAfterGame(numberOfFirstTeam, numberOfSecondTeam, numberOfFirstTeamPointsText, numberOfSecondTeamPointsText, newGame);
+
+        if (_currentChamp.NumberOfPlayedGames == NumberOfGamesInChamp)
+        {
+            var sortedTeams = _currentChamp.TeamsInChamp.OrderByDescending(u => u.PointsInChamp)
+                .ThenByDescending(u => (u.GoalsInChamp - u.MissedGoalsInChamp)); 
+
+            int teamPlace = 1;
+            foreach (TeamClass team in sortedTeams)
+            {
+                _currentChamp.TeamsInChamp[team.TeamNumber].PlaceInChamp = teamPlace;
+                place_text[team.TeamNumber].text = teamPlace.ToString();
+                teamPlace++;
+            }
+            Change_canvas(false, true, true,false);
+        }
+    }
 
     private void ChangeStringFieldsAfterGame(int numberOfFirstTeam, int numberOfSecondTeam, int numberOfFirstTeamPointsText,
         int numberOfSecondTeamPointsText, Game newGame)
