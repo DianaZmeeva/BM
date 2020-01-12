@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewAssembly", "NewAssembly.csproj", "{791F3111-7349-C8A2-465A-08753D7A4743}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests.csproj", "{5FFAB82F-FE65-9381-279B-6B96BA7C7C69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewAssembly", "NewAssembly.csproj", "{791F3111-7349-C8A2-465A-08753D7A4743}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BM_Test", "..\BM_Test\BM_Test.csproj", "{BD780668-E259-42F5-A83D-B6A5B5063601}"
 EndProject
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{791F3111-7349-C8A2-465A-08753D7A4743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{791F3111-7349-C8A2-465A-08753D7A4743}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{791F3111-7349-C8A2-465A-08753D7A4743}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{791F3111-7349-C8A2-465A-08753D7A4743}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FFAB82F-FE65-9381-279B-6B96BA7C7C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FFAB82F-FE65-9381-279B-6B96BA7C7C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FFAB82F-FE65-9381-279B-6B96BA7C7C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FFAB82F-FE65-9381-279B-6B96BA7C7C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791F3111-7349-C8A2-465A-08753D7A4743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791F3111-7349-C8A2-465A-08753D7A4743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791F3111-7349-C8A2-465A-08753D7A4743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791F3111-7349-C8A2-465A-08753D7A4743}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD780668-E259-42F5-A83D-B6A5B5063601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD780668-E259-42F5-A83D-B6A5B5063601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD780668-E259-42F5-A83D-B6A5B5063601}.Release|Any CPU.ActiveCfg = Release|Any CPU

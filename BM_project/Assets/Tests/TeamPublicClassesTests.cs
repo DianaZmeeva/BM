@@ -20,11 +20,11 @@ namespace Tests
         [Test]
         public void TeamClass_Initialize_CreateTeamClass()
         {
-           Team.TeamClass testTeamClass = new Team.TeamClass(_myRussiaTestTeam.name, _myRussiaTestTeam.l, _myRussiaTestTeam.number);
+           Team.TeamClass testTeamClass = new Team.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
 
-            Assert.AreEqual(_myRussiaTestTeam.name, testTeamClass.name);
-            Assert.AreEqual(_myRussiaTestTeam.l, testTeamClass.l);
-            Assert.AreEqual(_myRussiaTestTeam.number, testTeamClass.number);
+            Assert.AreEqual(_myRussiaTestTeam.TeamName, testTeamClass.TeamName);
+            Assert.AreEqual(_myRussiaTestTeam.TeamRating, testTeamClass.TeamRating);
+            Assert.AreEqual(_myRussiaTestTeam.TeamNumber, testTeamClass.TeamNumber);
         }
 
         [Test]

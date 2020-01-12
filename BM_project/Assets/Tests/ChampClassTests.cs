@@ -53,9 +53,9 @@ namespace Tests
 
             testChamp.GenerateTeams(minRating, maxRating);
 
-            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[1].l, minRating, maxRating));
-            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[2].l, minRating, maxRating));
-            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[3].l, minRating, maxRating));
+            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[1].TeamRating, minRating, maxRating));
+            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[2].TeamRating, minRating, maxRating));
+            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[3].TeamRating, minRating, maxRating));
         }
 
         private bool CheckTeamRating(double teamRating, int minRating, int maxRating)

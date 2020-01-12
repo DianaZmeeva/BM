@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 7.2000003
-    y: 51.2
-    width: 1522
-    height: 766
+    x: 0
+    y: 43.2
+    width: 1536
+    height: 781
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 3}
-  m_MinSize: {x: 950, y: 524}
+  m_MinSize: {x: 950, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -38,10 +38,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1145
+    x: 1156
     y: 0
-    width: 377
-    height: 430
+    width: 380
+    height: 439
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
@@ -69,9 +69,9 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1522
-    height: 766
-  m_MinSize: {x: 950, y: 300}
+    width: 1536
+    height: 781
+  m_MinSize: {x: 950, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -90,7 +90,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1522
+    width: 1536
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 746
-    width: 1522
+    y: 761
+    width: 1536
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -134,12 +134,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1522
-    height: 716
-  m_MinSize: {x: 579, y: 474}
-  m_MaxSize: {x: 12004, y: 14048}
+    width: 1536
+    height: 731
+  m_MinSize: {x: 579, y: 300}
+  m_MaxSize: {x: 12004, y: 8024}
   vertical: 0
-  controlID: 24
+  controlID: 10
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -159,12 +159,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1522
-    height: 716
-  m_MinSize: {x: 579, y: 474}
-  m_MaxSize: {x: 12004, y: 14048}
+    width: 1536
+    height: 731
+  m_MinSize: {x: 579, y: 300}
+  m_MaxSize: {x: 12004, y: 8024}
   vertical: 1
-  controlID: 25
+  controlID: 11
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,8 +185,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1522
-    height: 430
+    width: 1536
+    height: 439
   m_MinSize: {x: 579, y: 200}
   m_MaxSize: {x: 12004, y: 4024}
   vertical: 0
@@ -208,8 +208,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 202
-    height: 430
+    width: 204
+    height: 439
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
@@ -232,12 +232,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 202
+    x: 204
     y: 0
-    width: 943
-    height: 430
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+    width: 952
+    height: 439
+  m_MinSize: {x: 104, y: 124}
+  m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 15}
@@ -245,7 +245,7 @@ MonoBehaviour:
   - {fileID: 13}
   - {fileID: 16}
   m_Selected: 1
-  m_LastSelected: 0
+  m_LastSelected: 2
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -262,17 +262,17 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 430
-    width: 1522
-    height: 286
-  m_MinSize: {x: 230, y: 274}
-  m_MaxSize: {x: 10000, y: 10024}
-  m_ActualView: {fileID: 17}
+    y: 439
+    width: 1536
+    height: 292
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -293,10 +293,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 209.6
-    y: 81.6
-    width: 939
-    height: 410
+    x: 204
+    y: 73.6
+    width: 948
+    height: 419
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TestTypeToolbarIndex: 0
   m_PlayModeTestListGUI:
@@ -305,8 +305,8 @@ MonoBehaviour:
     - id: '[BM_project][suite]'
       name: BM_project
       fullName: BM_project
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.4290197
       messages: 
       output: 
       stacktrace: 
@@ -319,8 +319,8 @@ MonoBehaviour:
     - id: '[C:/Users/User/source/repos/BM/BM_project/Library/ScriptAssemblies/Tests.dll][suite]'
       name: Tests.dll
       fullName: C:/Users/User/source/repos/BM/BM_project/Library/ScriptAssemblies/Tests.dll
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.3748232
       messages: 
       output: 
       stacktrace: 
@@ -333,8 +333,8 @@ MonoBehaviour:
     - id: '[Tests][suite]'
       name: Tests
       fullName: Tests
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.3388711
       messages: 
       output: 
       stacktrace: 
@@ -344,11 +344,11 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentID: '[C:/Users/User/source/repos/BM/BM_project/Library/ScriptAssemblies/Tests.dll][suite]'
-    - id: '[Tests][Tests.NewTestScript][suite]'
-      name: NewTestScript
-      fullName: Tests.NewTestScript
-      resultStatus: 0
-      duration: 0
+    - id: '[Tests][Tests.ChampClassTests][suite]'
+      name: ChampClassTests
+      fullName: Tests.ChampClassTests
+      resultStatus: 1
+      duration: 0.0875832
       messages: 
       output: 
       stacktrace: 
@@ -358,11 +358,11 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentID: '[Tests][suite]'
-    - id: '[Tests][Tests.NewTestScript.NewTestScriptSimplePasses]'
-      name: NewTestScriptSimplePasses
-      fullName: Tests.NewTestScript.NewTestScriptSimplePasses
-      resultStatus: 0
-      duration: 0
+    - id: '[Tests][Tests.ChampClassTests.ChampClass_CreateClass_AddingMyTeamToClass]'
+      name: ChampClass_CreateClass_AddingMyTeamToClass
+      fullName: Tests.ChampClassTests.ChampClass_CreateClass_AddingMyTeamToClass
+      resultStatus: 1
+      duration: 0.020195
       messages: 
       output: 
       stacktrace: 
@@ -372,12 +372,12 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentID: '[Tests][Tests.NewTestScript][suite]'
-    - id: '[Tests][Tests.NewTestScript.NewTestScriptWithEnumeratorPasses]'
-      name: NewTestScriptWithEnumeratorPasses
-      fullName: Tests.NewTestScript.NewTestScriptWithEnumeratorPasses
-      resultStatus: 0
-      duration: 0
+      parentID: '[Tests][Tests.ChampClassTests][suite]'
+    - id: '[Tests][Tests.ChampClassTests.ChampClass_CreateClass_Equal_myRussiaTestTeam]'
+      name: ChampClass_CreateClass_Equal_myRussiaTestTeam
+      fullName: Tests.ChampClassTests.ChampClass_CreateClass_Equal_myRussiaTestTeam
+      resultStatus: 1
+      duration: 0.0051771
       messages: 
       output: 
       stacktrace: 
@@ -387,14 +387,252 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentID: '[Tests][Tests.NewTestScript][suite]'
-    m_ResultText: 
+      parentID: '[Tests][Tests.ChampClassTests][suite]'
+    - id: '[Tests][Tests.ChampClassTests.ChampClass_GenerateTeams_TeamsCountEqual4]'
+      name: ChampClass_GenerateTeams_TeamsCountEqual4
+      fullName: Tests.ChampClassTests.ChampClass_GenerateTeams_TeamsCountEqual4
+      resultStatus: 1
+      duration: 0.0151298
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.ChampClassTests][suite]'
+    - id: '[Tests][Tests.ChampClassTests.ChampClass_GenerateTeams30Min55Max_AllRivalTeamsRatingBetweenMinAndMax]'
+      name: ChampClass_GenerateTeams30Min55Max_AllRivalTeamsRatingBetweenMinAndMax
+      fullName: Tests.ChampClassTests.ChampClass_GenerateTeams30Min55Max_AllRivalTeamsRatingBetweenMinAndMax
+      resultStatus: 1
+      duration: 0.016123
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.ChampClassTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests][suite]'
+      name: GameClassPlayGameTests
+      fullName: Tests.GameClassPlayGameTests
+      resultStatus: 1
+      duration: 0.1435845
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentID: '[Tests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_CorrectTeamData_CheckMathGoalsNot0]'
+      name: TeamPlayGame_CorrectTeamData_CheckMathGoalsNot0
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_CorrectTeamData_CheckMathGoalsNot0
+      resultStatus: 1
+      duration: 0.0158237
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_FirstTeamWin_Gameo1MoreThanGameo2]'
+      name: TeamPlayGame_FirstTeamWin_Gameo1MoreThanGameo2
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_FirstTeamWin_Gameo1MoreThanGameo2
+      resultStatus: 1
+      duration: 0.015596
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_FirstTeamWin_Team1PointEqual2_Team2PointEqual1]'
+      name: TeamPlayGame_FirstTeamWin_Team1PointEqual2_Team2PointEqual1
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_FirstTeamWin_Team1PointEqual2_Team2PointEqual1
+      resultStatus: 1
+      duration: 0.0159361
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_FirstTeamWin_Team1WinsInChampEqual1_Team2FailedInChampEquals1]'
+      name: TeamPlayGame_FirstTeamWin_Team1WinsInChampEqual1_Team2FailedInChampEquals1
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_FirstTeamWin_Team1WinsInChampEqual1_Team2FailedInChampEquals1
+      resultStatus: 1
+      duration: 0.0163351
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_SecondTeamWin_Gameo2MoreThanGameo1]'
+      name: TeamPlayGame_SecondTeamWin_Gameo2MoreThanGameo1
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_SecondTeamWin_Gameo2MoreThanGameo1
+      resultStatus: 1
+      duration: 0.0152346
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_SecondTeamWin_Team2PointEqual2_Team1PointEqual1]'
+      name: TeamPlayGame_SecondTeamWin_Team2PointEqual2_Team1PointEqual1
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_SecondTeamWin_Team2PointEqual2_Team1PointEqual1
+      resultStatus: 1
+      duration: 0.0161353
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_SecondTeamWin_Team2WinsInChampEqual1_Team1FailedInChampEquals1]'
+      name: TeamPlayGame_SecondTeamWin_Team2WinsInChampEqual1_Team1FailedInChampEquals1
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_SecondTeamWin_Team2WinsInChampEqual1_Team1FailedInChampEquals1
+      resultStatus: 1
+      duration: 0.0156981
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.GameClassPlayGameTests.TeamPlayGame_TieOfTeams_GoalsOneofTeamEqual20_AnotherTeamEqual0]'
+      name: TeamPlayGame_TieOfTeams_GoalsOneofTeamEqual20_AnotherTeamEqual0
+      fullName: Tests.GameClassPlayGameTests.TeamPlayGame_TieOfTeams_GoalsOneofTeamEqual20_AnotherTeamEqual0
+      resultStatus: 1
+      duration: 0.0158812
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.GameClassPlayGameTests][suite]'
+    - id: '[Tests][Tests.TeamPublicClassesTests][suite]'
+      name: TeamPublicClassesTests
+      fullName: Tests.TeamPublicClassesTests
+      resultStatus: 1
+      duration: 0.0739961
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentID: '[Tests][suite]'
+    - id: '[Tests][Tests.TeamPublicClassesTests.GameF_WithParamenter0_Return1]'
+      name: GameF_WithParamenter0_Return1
+      fullName: Tests.TeamPublicClassesTests.GameF_WithParamenter0_Return1
+      resultStatus: 1
+      duration: 0.0159055
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.TeamPublicClassesTests][suite]'
+    - id: '[Tests][Tests.TeamPublicClassesTests.GameF_WithParamenter1_Return1]'
+      name: GameF_WithParamenter1_Return1
+      fullName: Tests.TeamPublicClassesTests.GameF_WithParamenter1_Return1
+      resultStatus: 1
+      duration: 0.016197
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.TeamPublicClassesTests][suite]'
+    - id: '[Tests][Tests.TeamPublicClassesTests.GameF_WithParameter5_Return120]'
+      name: GameF_WithParameter5_Return120
+      fullName: Tests.TeamPublicClassesTests.GameF_WithParameter5_Return120
+      resultStatus: 1
+      duration: 0.0153853
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.TeamPublicClassesTests][suite]'
+    - id: '[Tests][Tests.TeamPublicClassesTests.TeamClass_Initialize_CreateTeamClass]'
+      name: TeamClass_Initialize_CreateTeamClass
+      fullName: Tests.TeamPublicClassesTests.TeamClass_Initialize_CreateTeamClass
+      resultStatus: 1
+      duration: 0.0158776
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentID: '[Tests][Tests.TeamPublicClassesTests][suite]'
+    m_ResultText: Tests.dll (0,375s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 1fc359c0ffffff7f
+      m_SelectedIDs: 50209309
+      m_LastClickedID: 160637008
+      m_ExpandedIDs: 01a0d1bb1fc359c01ff09de33beef202502093096191624446016c62ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -490,10 +728,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 209.6
-    y: 81.6
-    width: 939
-    height: 410
+    x: 204
+    y: 73.6
+    width: 948
+    height: 419
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
@@ -505,10 +743,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -375.6
-    m_HBaseRangeMax: 375.6
-    m_VBaseRangeMin: -157.2
-    m_VBaseRangeMax: 157.2
+    m_HBaseRangeMin: -379.2
+    m_HBaseRangeMax: 379.2
+    m_VBaseRangeMin: -160.8
+    m_VBaseRangeMax: 160.8
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -517,7 +755,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -526,25 +764,25 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
-      width: 939
-      height: 393
+      width: 948
+      height: 402
     m_Scale: {x: 1.25, y: 1.25}
-    m_Translation: {x: 469.5, y: 196.5}
+    m_Translation: {x: 474, y: 201}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -375.6
-      y: -157.2
-      width: 751.2
-      height: 314.4
+      x: -379.2
+      y: -160.8
+      width: 758.4
+      height: 321.6
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 1173.75, y: 512.5}
+  m_LastWindowPixelSize: {x: 1185, y: 523.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -570,17 +808,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 7.2000003
-    y: 81.6
-    width: 200
-    height: 410
+    x: 0
+    y: 73.6
+    width: 202
+    height: 419
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a23a0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d4fbffff
+      m_ExpandedIDs: 8cfaffff9efaffff16fbffffc0fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -624,10 +862,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 209.6
-    y: 81.6
-    width: 939
-    height: 410
+    x: 204
+    y: 73.6
+    width: 948
+    height: 419
   m_PersistentViewDataDictionary: {fileID: 0}
   m_WindowGUID: 39f59e399f32b554891280209c162ee5
   m_SceneLighting: 1
@@ -730,10 +968,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 7.2000003
-    y: 511.2
-    width: 1522
-    height: 266
+    x: 0
+    y: 512
+    width: 1536
+    height: 272
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -758,9 +996,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9c3a0000
-    m_LastClickedID: 15004
-    m_ExpandedIDs: 000000005c0900008c0a000000ca9a3b
+    m_SelectedIDs: e60a0000
+    m_LastClickedID: 2790
+    m_ExpandedIDs: 00000000680900009a0a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -788,7 +1026,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005c090000
+    m_ExpandedIDs: 00000000680900009a0a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -864,10 +1102,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 7.2000003
-    y: 511.2
-    width: 1522
-    height: 266
+    x: 0
+    y: 512
+    width: 1536
+    height: 272
   m_PersistentViewDataDictionary: {fileID: 0}
 --- !u!114 &19
 MonoBehaviour:
@@ -890,10 +1128,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1152
-    y: 81.6
-    width: 375
-    height: 410
+    x: 1156
+    y: 73.6
+    width: 378
+    height: 419
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 

@@ -33,8 +33,8 @@ namespace Tests
         [Test]
         public void TeamPlayGame_FirstTeamWin_Gameo1MoreThanGameo2()
         {
-            _russiaTestTeam.l = 50;
-            _englandTestTeam.l = 15;
+            _russiaTestTeam.TeamRating = 50;
+            _englandTestTeam.TeamRating = 15;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
@@ -45,34 +45,34 @@ namespace Tests
         [Test]
         public void TeamPlayGame_FirstTeamWin_Team1WinsInChampEqual1_Team2FailedInChampEquals1()
         {
-            _russiaTestTeam.l = 50;
-            _englandTestTeam.l = 4;
+            _russiaTestTeam.TeamRating = 50;
+            _englandTestTeam.TeamRating = 4;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(1, gameclass.team1.wins_in_champ);
-            Assert.AreEqual(1, gameclass.team2.failed_in_champ);
+            Assert.AreEqual(1, gameclass.team1.WinsInChamp);
+            Assert.AreEqual(1, gameclass.team2.DefeatsInChamp);
         }
 
         [Test]
         public void TeamPlayGame_FirstTeamWin_Team1PointEqual2_Team2PointEqual1()
         {
-            _russiaTestTeam.l = 50;
-            _englandTestTeam.l = 4;
+            _russiaTestTeam.TeamRating = 50;
+            _englandTestTeam.TeamRating = 4;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(2, gameclass.team1.points);
-            Assert.AreEqual(1, gameclass.team2.points);
+            Assert.AreEqual(2, gameclass.team1.PointsInChamp);
+            Assert.AreEqual(1, gameclass.team2.PointsInChamp);
         }
 
         [Test]
         public void TeamPlayGame_SecondTeamWin_Gameo2MoreThanGameo1()
         {
-            _russiaTestTeam.l = 15;
-            _englandTestTeam.l = 50;
+            _russiaTestTeam.TeamRating = 15;
+            _englandTestTeam.TeamRating = 50;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
@@ -83,34 +83,34 @@ namespace Tests
         [Test]
         public void TeamPlayGame_SecondTeamWin_Team2WinsInChampEqual1_Team1FailedInChampEquals1()
         {
-            _russiaTestTeam.l = 15;
-            _englandTestTeam.l = 50;
+            _russiaTestTeam.TeamRating = 15;
+            _englandTestTeam.TeamRating = 50;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(1, gameclass.team2.wins_in_champ);
-            Assert.AreEqual(1, gameclass.team1.failed_in_champ);
+            Assert.AreEqual(1, gameclass.team2.WinsInChamp);
+            Assert.AreEqual(1, gameclass.team1.DefeatsInChamp);
         }
 
         [Test]
         public void TeamPlayGame_SecondTeamWin_Team2PointEqual2_Team1PointEqual1()
         {
-            _russiaTestTeam.l = 15;
-            _englandTestTeam.l = 50;
+            _russiaTestTeam.TeamRating = 15;
+            _englandTestTeam.TeamRating = 50;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(2, gameclass.team2.points);
-            Assert.AreEqual(1, gameclass.team1.points);
+            Assert.AreEqual(2, gameclass.team2.PointsInChamp);
+            Assert.AreEqual(1, gameclass.team1.PointsInChamp);
         }
 
         [Test]
         public void TeamPlayGame_TieOfTeams_GoalsOneofTeamEqual20_AnotherTeamEqual0()
         {
-            _russiaTestTeam.l = 0;
-            _englandTestTeam.l = 0;
+            _russiaTestTeam.TeamRating = 0;
+            _englandTestTeam.TeamRating = 0;
             Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
