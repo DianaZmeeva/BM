@@ -1,33 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public Button startButton, aboutButton, exitButton;
+    [CanBeNull] 
+    public Button startButton, aboutButton, exitButton, homeButton;
     void Start()
     {
-        startButton.onClick.AddListener(StartLevel);
-        aboutButton.onClick.AddListener(About);
-        exitButton.onClick.AddListener(Ex);
+        if (CheckButtonOnNull(startButton))
+            startButton.onClick.AddListener(StartLevel);
+        if (CheckButtonOnNull(aboutButton))
+            aboutButton.onClick.AddListener(LoadAboutScene);
+        if(CheckButtonOnNull(exitButton))
+            exitButton.onClick.AddListener(Exit);
+        if (CheckButtonOnNull(homeButton))
+            homeButton.onClick.AddListener(LoadStartScene);
     }
-    
-    //открытие cцены Игры
-    void StartLevel()
+
+
+    private bool CheckButtonOnNull(Button button)
+    {
+        return button != null;
+    }
+
+    private void StartLevel()
     {
         SceneManager.LoadScene("SampleScene");
     }
 
-    //открытие cцены ОБ Игре
-    void About()
+    private void LoadAboutScene()
     {
         SceneManager.LoadScene("AboutScene");
     }
 
-    //выход из игры
-    void Ex()
+    private void LoadStartScene()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+    private void Exit()
     {
         Application.Quit();
     }

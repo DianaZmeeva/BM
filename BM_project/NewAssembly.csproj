@@ -63,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Exit.cs" />
-    <Compile Include="Assets\Scripts\Home.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\SportManagerController.cs" />
     <Reference Include="UnityEngine.AIModule">
