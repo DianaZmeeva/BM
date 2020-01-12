@@ -30,6 +30,18 @@ public class SportManagerController : MonoBehaviour
             TeamRating = rating;
             TeamNumber = number;
         }
+
+        public void ChangeFieldsWithWin()
+        {
+            WinsInChamp++;
+            PointsInChamp += 2;
+        }
+
+        public void ChangeFieldsWithDefeat()
+        {
+            DefeatsInChamp++;
+            PointsInChamp += 1;
+        }
     }
 
     public class Champ //класс турнира 
@@ -65,6 +77,8 @@ public class SportManagerController : MonoBehaviour
     {
         public TeamClass FirstTeamInGame, SecondTeamInGame; // индексы команд
         public int FirstTeamPoints, SecondTeamPoints; //очки команд
+        private const int PointsWithTechnicalVictory = 20;
+        private const int PointsWithTechnicalLoose = 0;
         public Game(TeamClass team1, TeamClass team2)
         {
             FirstTeamInGame = team1;
@@ -73,61 +87,53 @@ public class SportManagerController : MonoBehaviour
 
         public void PlayGame()
         {
-            double x1, x2;
-            Dictionary<int, double> probabilityDictionaryForFirstTeam = new Dictionary<int, double>(); //словарь вероятностей для команды 1 
-            Dictionary<int, double> probabilityDictionaryForSecondTeam = new Dictionary<int, double>(); //словарь вероятностей для команды 1 
+            FirstTeamPoints = GoalGenerateByPuasson(CountProbabilityDictionary(FirstTeamInGame.TeamRating));
+            SecondTeamPoints = GoalGenerateByPuasson(CountProbabilityDictionary(SecondTeamInGame.TeamRating));
 
-            //расчет словаря вероятностей для обеих команд
-            for (int i = 0; i < 100; i++)
-            {
-                x1 = GetProbabilityByPuassonDistribution(FirstTeamInGame.TeamRating, i);
-                x2 = GetProbabilityByPuassonDistribution(SecondTeamInGame.TeamRating, i);
-                if (x1 > 0 && x1 <= 1)
-                {
-                    probabilityDictionaryForFirstTeam.Add(i, x1);
-                }
-                if (x2 > 0 && x2 <= 1)
-                {
-                    probabilityDictionaryForSecondTeam.Add(i, x2);
-                }
-            }
-            // определения количества очков, забитых командами (FirstTeamPoints, SecondTeamPoints для команд FirstTeamInGame, SecondTeamInGame соответсвенно)
-            FirstTeamPoints = GoalGenerateByPuasson(probabilityDictionaryForFirstTeam);
-            SecondTeamPoints = GoalGenerateByPuasson(probabilityDictionaryForSecondTeam);
+            if (FirstTeamPoints == PointsWithTechnicalLoose)
+                SecondTeamPoints = PointsWithTechnicalVictory;
+            if (SecondTeamPoints == PointsWithTechnicalLoose)
+                FirstTeamPoints = PointsWithTechnicalVictory;
 
-            //если одна из коианд забила 0 очков - присваивается техническое поражение (счет 20:0)
-            if (FirstTeamPoints == 0)
-                SecondTeamPoints = 20;
-            if (SecondTeamPoints == 0)
-                FirstTeamPoints = 20;
-
-            //при равенстве очков команда-победитель выбирается случайно (метод "побрасывание монетки")
             if (FirstTeamPoints == SecondTeamPoints)
-            {
-                System.Random rnd = new System.Random();
-                x1 = rnd.NextDouble();
-                if (x1 <= 0.5)
-                    FirstTeamPoints += 2;
-                else
-                    SecondTeamPoints += 2;
-            }
-            
-            // изменение показателей команд (очков за турнир, побед и поражений в турнире)
+                GenerateRandomVictory();
+
             if (FirstTeamPoints > SecondTeamPoints)
             {
-                FirstTeamInGame.PointsInChamp += 2;
-                FirstTeamInGame.WinsInChamp++;
-                SecondTeamInGame.PointsInChamp += 1;
-                SecondTeamInGame.DefeatsInChamp++;
+                FirstTeamInGame.ChangeFieldsWithWin();
+                SecondTeamInGame.ChangeFieldsWithDefeat();
 
             }
             else
             {
-                SecondTeamInGame.PointsInChamp += 2;
-                SecondTeamInGame.WinsInChamp++;
-                FirstTeamInGame.PointsInChamp += 1;
-                FirstTeamInGame.DefeatsInChamp++;
+                SecondTeamInGame.ChangeFieldsWithWin();
+                FirstTeamInGame.ChangeFieldsWithDefeat();
             }
+        }
+
+        private void GenerateRandomVictory()
+        {
+            System.Random rnd = new System.Random();
+            var probability = rnd.NextDouble();
+            if (probability <= 0.5)
+                FirstTeamPoints += 2;
+            else
+                SecondTeamPoints += 2;
+        }
+
+        private Dictionary<int, double> CountProbabilityDictionary(double teamRating)
+        {
+            Dictionary<int, double> probabilityDictionary = new Dictionary<int, double>();
+            for (int i = 0; i < 100; i++)
+            {
+                var probability = GetProbabilityByPuassonDistribution(teamRating, i);
+                if (probability > 0 && probability <= 1)
+                {
+                    probabilityDictionary.Add(i, probability);
+                }
+            }
+
+            return probabilityDictionary;
         }
 
         //генератор Пуассоновского распределения

@@ -69,8 +69,8 @@ namespace Tests
         [Test]
         public void TeamPlayGame_OneTeamWin_ItPointEqual2_OtherTeamPointEqual1()
         {
-            _russiaTestTeam.TeamRating = 50;
-            _englandTestTeam.TeamRating = 4;
+            _russiaTestTeam.TeamRating = 35;
+            _englandTestTeam.TeamRating = 35;
             SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
