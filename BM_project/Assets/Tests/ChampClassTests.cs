@@ -22,8 +22,8 @@ namespace Tests
         {
             Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
 
-            Assert.AreNotEqual(null, testChamp.myteam);
-            Assert.AreEqual(1, testChamp.teams.Count);
+            Assert.AreNotEqual(null, testChamp.PlayerTeam);
+            Assert.AreEqual(1, testChamp.TeamsInChamp.Count);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Tests
         {
             Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
 
-            Assert.AreEqual(_myRussiaTestTeam, testChamp.myteam);
+            Assert.AreEqual(_myRussiaTestTeam, testChamp.PlayerTeam);
         }
 
         [Test]
@@ -39,9 +39,9 @@ namespace Tests
         {
             Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
 
-            testChamp.GenerateTeams(30, 55);
+            testChamp.GenerateRivalTeams(30, 55);
 
-            Assert.AreEqual(4, testChamp.teams.Count);
+            Assert.AreEqual(4, testChamp.TeamsInChamp.Count);
         }
 
         [Test]
@@ -51,11 +51,11 @@ namespace Tests
             int maxRating = 55;
             Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
 
-            testChamp.GenerateTeams(minRating, maxRating);
+            testChamp.GenerateRivalTeams(minRating, maxRating);
 
-            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[1].TeamRating, minRating, maxRating));
-            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[2].TeamRating, minRating, maxRating));
-            Assert.AreEqual(true, CheckTeamRating(testChamp.teams[3].TeamRating, minRating, maxRating));
+            Assert.AreEqual(true, CheckTeamRating(testChamp.TeamsInChamp[1].TeamRating, minRating, maxRating));
+            Assert.AreEqual(true, CheckTeamRating(testChamp.TeamsInChamp[2].TeamRating, minRating, maxRating));
+            Assert.AreEqual(true, CheckTeamRating(testChamp.TeamsInChamp[3].TeamRating, minRating, maxRating));
         }
 
         private bool CheckTeamRating(double teamRating, int minRating, int maxRating)
