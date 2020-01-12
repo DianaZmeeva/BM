@@ -57,6 +57,78 @@ namespace Tests
             Assert.AreEqual(120, result);
         }
 
+        [Test]
+        public void TeamClass_ResetTeamStatisticFields_ReturnGoalsInChampEqualZero()
+        {
+            SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+            testTeamClass.GoalsInChamp = 100;
+
+            testTeamClass.ResetStatisticsFields();
+
+            Assert.AreEqual(0, testTeamClass.GoalsInChamp);
+
+        }
+
+        [Test]
+        public void TeamClass_ResetTeamStatisticFields_ReturnMissedGoalsInChampEqualZero()
+        {
+            SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+            testTeamClass.MissedGoalsInChamp = 100;
+
+            testTeamClass.ResetStatisticsFields();
+
+            Assert.AreEqual(0, testTeamClass.MissedGoalsInChamp);
+
+        }
+
+        [Test]
+        public void TeamClass_ResetTeamStatisticFields_ReturnPointsInChampEqualZero()
+        {
+            SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+            testTeamClass.PointsInChamp = 6;
+
+            testTeamClass.ResetStatisticsFields();
+
+            Assert.AreEqual(0, testTeamClass.PointsInChamp);
+
+        }
+
+        [Test]
+        public void TeamClass_ResetTeamStatisticFields_ReturnPlaceInChampEqualZero()
+        {
+            SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+            testTeamClass.PlaceInChamp = 1;
+
+            testTeamClass.ResetStatisticsFields();
+
+            Assert.AreEqual(0, testTeamClass.PlaceInChamp);
+
+        }
+
+        [Test]
+        public void TeamClass_ResetTeamStatisticFields_ReturnWinsInChampEqualZero()
+        {
+            SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+            testTeamClass.WinsInChamp = 3;
+
+            testTeamClass.ResetStatisticsFields();
+
+            Assert.AreEqual(0, testTeamClass.WinsInChamp);
+
+        }
+
+        [Test]
+        public void TeamClass_ResetTeamStatisticFields_ReturnDefeatsInChampEqualZero()
+        {
+            SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+            testTeamClass.DefeatsInChamp = 1;
+
+            testTeamClass.ResetStatisticsFields();
+
+            Assert.AreEqual(0, testTeamClass.DefeatsInChamp);
+
+        }
+
         private void InitializeMyTeam()
         {
             var teamStruct = new DataFotTests.CreateTeamStruct()

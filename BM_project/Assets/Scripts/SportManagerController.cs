@@ -42,6 +42,16 @@ public class SportManagerController : MonoBehaviour
             DefeatsInChamp++;
             PointsInChamp += 1;
         }
+
+        public void ResetStatisticsFields()
+        {
+            GoalsInChamp = 0;
+            MissedGoalsInChamp = 0;
+            PointsInChamp = 0;
+            PlaceInChamp = 0;
+            WinsInChamp = 0;
+            DefeatsInChamp = 0;
+        }
     }
 
     public class Champ
@@ -410,12 +420,7 @@ public class SportManagerController : MonoBehaviour
             place_text[i].text = "";
         }
 
-        _myGameTeam.GoalsInChamp = 0;
-        _myGameTeam.MissedGoalsInChamp = 0;
-        _myGameTeam.PointsInChamp = 0;
-        _myGameTeam.PlaceInChamp = 0;
-        _myGameTeam.WinsInChamp = 0;
-        _myGameTeam.DefeatsInChamp = 0;
+        _myGameTeam.ResetStatisticsFields();
     }
 
     void Change_canvas(bool isFirstCanvasActive, bool isSecondCanvasActive, bool isThirdCanvasActive, bool isFourthCanvasActive)
