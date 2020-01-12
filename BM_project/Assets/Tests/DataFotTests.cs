@@ -14,9 +14,9 @@ namespace Assets.Tests
             public int TeamRating;
             public int TeamNumber;
         }
-        public static Team.TeamClass CreateTestTeam(CreateTeamStruct team)
+        public static SportManagerController.TeamClass CreateTestTeam(CreateTeamStruct team)
         {
-            return new Team.TeamClass(team.TeamName, team.TeamRating, team.TeamNumber);
+            return new SportManagerController.TeamClass(team.TeamName, team.TeamRating, team.TeamNumber);
         }
     }
 }

@@ -2948,7 +2948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b547e56f8a4654942a07a7ec35d66e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points_buttons:
+  ListOfButtonGame:
   - {fileID: 622537231}
   - {fileID: 514313059}
   - {fileID: 1987188494}
@@ -2991,9 +2991,6 @@ MonoBehaviour:
   back_to_team: {fileID: 303614516}
   statistic: {fileID: 1430957555}
   to_champ: {fileID: 1419787294}
-  up: {fileID: 1013340513}
-  choose: {fileID: 688174172}
-  warning: {fileID: 1518836963}
   t_text:
   - {fileID: 1387161315}
   - {fileID: 1985942857}
@@ -3034,6 +3031,9 @@ MonoBehaviour:
   fa: {fileID: 40128967}
   r: {fileID: 2048332324}
   money_text: {fileID: 849802469}
+  up: {fileID: 1013340513}
+  choose: {fileID: 688174172}
+  warning: {fileID: 1518836963}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

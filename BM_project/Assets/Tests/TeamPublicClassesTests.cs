@@ -9,7 +9,7 @@ namespace Tests
 {
     public class TeamPublicClassesTests
     {
-        private Team.TeamClass _myRussiaTestTeam;
+        private SportManagerController.TeamClass _myRussiaTestTeam;
 
         [SetUp]
         public void Setup()
@@ -20,7 +20,7 @@ namespace Tests
         [Test]
         public void TeamClass_Initialize_CreateTeamClass()
         {
-           Team.TeamClass testTeamClass = new Team.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
+           SportManagerController.TeamClass testTeamClass = new SportManagerController.TeamClass(_myRussiaTestTeam.TeamName, _myRussiaTestTeam.TeamRating, _myRussiaTestTeam.TeamNumber);
 
             Assert.AreEqual(_myRussiaTestTeam.TeamName, testTeamClass.TeamName);
             Assert.AreEqual(_myRussiaTestTeam.TeamRating, testTeamClass.TeamRating);
@@ -30,7 +30,7 @@ namespace Tests
         [Test]
         public void GameF_WithParamenter1_Return1()
         {
-            Team.Game testGameClass= new Team.Game(_myRussiaTestTeam, _myRussiaTestTeam);
+            SportManagerController.Game testGameClass= new SportManagerController.Game(_myRussiaTestTeam, _myRussiaTestTeam);
 
             var result = testGameClass.GetFactorial(1);
 
@@ -40,7 +40,7 @@ namespace Tests
         [Test]
         public void GameF_WithParamenter0_Return1()
         {
-            Team.Game testGameClass = new Team.Game(_myRussiaTestTeam, _myRussiaTestTeam);
+            SportManagerController.Game testGameClass = new SportManagerController.Game(_myRussiaTestTeam, _myRussiaTestTeam);
 
             var result = testGameClass.GetFactorial(0);
 
@@ -50,7 +50,7 @@ namespace Tests
         [Test]
         public void GameF_WithParameter5_Return120()
         {
-            Team.Game testGameClass = new Team.Game(_myRussiaTestTeam, _myRussiaTestTeam);
+            SportManagerController.Game testGameClass = new SportManagerController.Game(_myRussiaTestTeam, _myRussiaTestTeam);
 
             var result = testGameClass.GetFactorial(5);
 

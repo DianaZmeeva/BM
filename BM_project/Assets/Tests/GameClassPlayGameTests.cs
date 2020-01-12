@@ -10,8 +10,8 @@ namespace Tests
 {
     public class GameClassPlayGameTests
     {
-        private Team.TeamClass _russiaTestTeam;
-        private Team.TeamClass _englandTestTeam;
+        private SportManagerController.TeamClass _russiaTestTeam;
+        private SportManagerController.TeamClass _englandTestTeam;
 
         [SetUp]
         public void Setup()
@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public void TeamPlayGame_CorrectTeamData_CheckMathGoalsNot0()
         {
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -35,7 +35,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 50;
             _englandTestTeam.TeamRating = 15;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -47,7 +47,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 50;
             _englandTestTeam.TeamRating = 4;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -60,7 +60,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 50;
             _englandTestTeam.TeamRating = 4;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -73,7 +73,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 15;
             _englandTestTeam.TeamRating = 50;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -85,7 +85,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 15;
             _englandTestTeam.TeamRating = 50;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -98,7 +98,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 15;
             _englandTestTeam.TeamRating = 50;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
@@ -111,7 +111,7 @@ namespace Tests
         {
             _russiaTestTeam.TeamRating = 0;
             _englandTestTeam.TeamRating = 0;
-            Team.Game gameclass = new Team.Game(_russiaTestTeam, _englandTestTeam);
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 

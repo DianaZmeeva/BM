@@ -9,7 +9,7 @@ namespace Tests
 {
     public class ChampClassTests
     {
-        private Team.TeamClass _myRussiaTestTeam;
+        private SportManagerController.TeamClass _myRussiaTestTeam;
 
         [SetUp]
         public void Setup()
@@ -20,7 +20,7 @@ namespace Tests
         [Test]
         public void ChampClass_CreateClass_AddingMyTeamToClass()
         {
-            Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
+            SportManagerController.Champ testChamp = new SportManagerController.Champ(_myRussiaTestTeam);
 
             Assert.AreNotEqual(null, testChamp.PlayerTeam);
             Assert.AreEqual(1, testChamp.TeamsInChamp.Count);
@@ -29,7 +29,7 @@ namespace Tests
         [Test]
         public void ChampClass_CreateClass_Equal_myRussiaTestTeam()
         {
-            Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
+            SportManagerController.Champ testChamp = new SportManagerController.Champ(_myRussiaTestTeam);
 
             Assert.AreEqual(_myRussiaTestTeam, testChamp.PlayerTeam);
         }
@@ -37,7 +37,7 @@ namespace Tests
         [Test]
         public void ChampClass_GenerateTeams_TeamsCountEqual4()
         {
-            Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
+            SportManagerController.Champ testChamp = new SportManagerController.Champ(_myRussiaTestTeam);
 
             testChamp.GenerateRivalTeams(30, 55);
 
@@ -49,7 +49,7 @@ namespace Tests
         {
             int minRating = 30;
             int maxRating = 55;
-            Team.Champ testChamp = new Team.Champ(_myRussiaTestTeam);
+            SportManagerController.Champ testChamp = new SportManagerController.Champ(_myRussiaTestTeam);
 
             testChamp.GenerateRivalTeams(minRating, maxRating);
 
