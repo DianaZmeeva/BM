@@ -123,13 +123,18 @@ public class SportManagerController : MonoBehaviour
             for (int i = 0; i < 100; i++)
             {
                 var probability = GetProbabilityByPuassonDistribution(teamRating, i);
-                if (probability > 0 && probability <= 1)
+                if (IsCorrectValueForProbability(probability))
                 {
                     probabilityDictionary.Add(i, probability);
                 }
             }
 
             return probabilityDictionary;
+        }
+
+        private static bool IsCorrectValueForProbability(double probability)
+        {
+            return probability > 0 && probability <= 1;
         }
 
         private int GoalGenerateByPuasson(Dictionary<int, double> probabilityDictionary)
