@@ -80,7 +80,7 @@ public class SportManagerController : MonoBehaviour
             //расчет словаря вероятностей для обеих команд
             for (int i = 0; i < 100; i++)
             {
-                x1 = GetProbabilityByPuassonDistribution(FirstTeamInGame.TeamRating, i); 
+                x1 = GetProbabilityByPuassonDistribution(FirstTeamInGame.TeamRating, i);
                 x2 = GetProbabilityByPuassonDistribution(SecondTeamInGame.TeamRating, i);
                 if (x1 > 0 && x1 <= 1)
                 {

@@ -31,19 +31,43 @@ namespace Tests
         }
 
         [Test]
-        public void TeamPlayGame_FirstTeamWin_Gameo1MoreThanGameo2()
+        public void TeamPlayGame_OneOfTeamsWin_ItPointsMore()
         {
-            _russiaTestTeam.TeamRating = 50;
-            _englandTestTeam.TeamRating = 15;
+            _russiaTestTeam.TeamRating = 35;
+            _englandTestTeam.TeamRating = 35;
             SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(true, gameclass.FirstTeamPoints>gameclass.SecondTeamPoints);
+            bool result = (gameclass.FirstTeamPoints > gameclass.SecondTeamPoints) ||
+                          (gameclass.FirstTeamPoints < gameclass.SecondTeamPoints);
+
+            Assert.AreEqual(true, result);
         }
 
         [Test]
-        public void TeamPlayGame_FirstTeamWin_Team1WinsInChampEqual1_Team2FailedInChampEquals1()
+        public void TeamPlayGame_OneTeamWins_ItWinsInChampEqual1_OtherTeamFailedInChampEquals1()
+        {
+            _russiaTestTeam.TeamRating = 35;
+            _englandTestTeam.TeamRating = 35;
+            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
+
+            gameclass.PlayGame();
+
+            if (gameclass.FirstTeamPoints > gameclass.SecondTeamPoints)
+            {
+                Assert.AreEqual(1, gameclass.FirstTeamInGame.WinsInChamp);
+                Assert.AreEqual(1, gameclass.SecondTeamInGame.DefeatsInChamp);
+            }
+            else
+            {
+                Assert.AreEqual(1, gameclass.SecondTeamInGame.WinsInChamp);
+                Assert.AreEqual(1, gameclass.FirstTeamInGame.DefeatsInChamp);
+            }
+        }
+
+        [Test]
+        public void TeamPlayGame_OneTeamWin_ItPointEqual2_OtherTeamPointEqual1()
         {
             _russiaTestTeam.TeamRating = 50;
             _englandTestTeam.TeamRating = 4;
@@ -51,59 +75,17 @@ namespace Tests
 
             gameclass.PlayGame();
 
-            Assert.AreEqual(1, gameclass.FirstTeamInGame.WinsInChamp);
-            Assert.AreEqual(1, gameclass.SecondTeamInGame.DefeatsInChamp);
-        }
+            if (gameclass.FirstTeamPoints > gameclass.SecondTeamPoints)
+            {
+                Assert.AreEqual(2, gameclass.FirstTeamInGame.PointsInChamp);
+                Assert.AreEqual(1, gameclass.SecondTeamInGame.PointsInChamp);
+            }
+            else
+            {
+                Assert.AreEqual(1, gameclass.FirstTeamInGame.PointsInChamp);
+                Assert.AreEqual(2, gameclass.SecondTeamInGame.PointsInChamp);
+            }
 
-        [Test]
-        public void TeamPlayGame_FirstTeamWin_Team1PointEqual2_Team2PointEqual1()
-        {
-            _russiaTestTeam.TeamRating = 50;
-            _englandTestTeam.TeamRating = 4;
-            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
-
-            gameclass.PlayGame();
-
-            Assert.AreEqual(2, gameclass.FirstTeamInGame.PointsInChamp);
-            Assert.AreEqual(1, gameclass.SecondTeamInGame.PointsInChamp);
-        }
-
-        [Test]
-        public void TeamPlayGame_SecondTeamWin_Gameo2MoreThanGameo1()
-        {
-            _russiaTestTeam.TeamRating = 15;
-            _englandTestTeam.TeamRating = 50;
-            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
-
-            gameclass.PlayGame();
-
-            Assert.AreEqual(true, gameclass.FirstTeamPoints < gameclass.SecondTeamPoints);
-        }
-
-        [Test]
-        public void TeamPlayGame_SecondTeamWin_Team2WinsInChampEqual1_Team1FailedInChampEquals1()
-        {
-            _russiaTestTeam.TeamRating = 15;
-            _englandTestTeam.TeamRating = 50;
-            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
-
-            gameclass.PlayGame();
-
-            Assert.AreEqual(1, gameclass.SecondTeamInGame.WinsInChamp);
-            Assert.AreEqual(1, gameclass.FirstTeamInGame.DefeatsInChamp);
-        }
-
-        [Test]
-        public void TeamPlayGame_SecondTeamWin_Team2PointEqual2_Team1PointEqual1()
-        {
-            _russiaTestTeam.TeamRating = 15;
-            _englandTestTeam.TeamRating = 50;
-            SportManagerController.Game gameclass = new SportManagerController.Game(_russiaTestTeam, _englandTestTeam);
-
-            gameclass.PlayGame();
-
-            Assert.AreEqual(2, gameclass.SecondTeamInGame.PointsInChamp);
-            Assert.AreEqual(1, gameclass.FirstTeamInGame.PointsInChamp);
         }
 
         [Test]
