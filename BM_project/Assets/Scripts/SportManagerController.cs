@@ -346,24 +346,23 @@ public class SportManagerController : MonoBehaviour
         {
             warning.text = "";
 
-            if (choose.value == 1)
+            switch (choose.value)
             {
-                minRating = MinimalAmateurRatingValue;
-                maxRating = MaxAmateurRatingValue;
-                _currentChamp.EarningsRatioForChamp = 1;
-
-            }
-            else if (choose.value == 2)
-            {
-                minRating = MinimalSemiProfessionalRatingValue;
-                maxRating = MaxSemiProfessionalRatingValue;
-                _currentChamp.EarningsRatioForChamp = 10;
-            }
-            else if (choose.value == 3)
-            {
-                minRating = MinimalProfessionalRatingValue;
-                maxRating = MaxProfessionalRatingValue;
-                _currentChamp.EarningsRatioForChamp = 100;
+                case 1:
+                    minRating = MinimalAmateurRatingValue;
+                    maxRating = MaxAmateurRatingValue;
+                    _currentChamp.EarningsRatioForChamp = 1;
+                    break;
+                case 2:
+                    minRating = MinimalSemiProfessionalRatingValue;
+                    maxRating = MaxSemiProfessionalRatingValue;
+                    _currentChamp.EarningsRatioForChamp = 10;
+                    break;
+                case 3:
+                    minRating = MinimalProfessionalRatingValue;
+                    maxRating = MaxProfessionalRatingValue;
+                    _currentChamp.EarningsRatioForChamp = 100;
+                    break;
             }
 
             Change_canvas(false, true, false, false);
@@ -392,17 +391,9 @@ public class SportManagerController : MonoBehaviour
 
         _currentChamp.NumberOfPlayedGames++;
 
-        //вывод текстовых значений об игре
-        _currentChamp.TeamsInChamp[numberOfFirstTeam].GoalsInChamp += newGame.FirstTeamPoints;
-        _currentChamp.TeamsInChamp[numberOfSecondTeam].GoalsInChamp += newGame.SecondTeamPoints;
-        _currentChamp.TeamsInChamp[numberOfSecondTeam].MissedGoalsInChamp += newGame.FirstTeamPoints;
-        _currentChamp.TeamsInChamp[numberOfFirstTeam].MissedGoalsInChamp += newGame.SecondTeamPoints;
-        points_text[numberOfSecondTeamPointsText].text = newGame.FirstTeamPoints + ":" + newGame.SecondTeamPoints;
-        points_text[numberOfFirstTeamPointsText].text = newGame.SecondTeamPoints + ":" + newGame.FirstTeamPoints;
-        oh[numberOfFirstTeam].text = _currentChamp.TeamsInChamp[numberOfFirstTeam].PointsInChamp.ToString();
-        oh[numberOfSecondTeam].text = _currentChamp.TeamsInChamp[numberOfSecondTeam].PointsInChamp.ToString();
+        ChangeStringFieldsAfterGame(numberOfFirstTeam, numberOfSecondTeam, numberOfFirstTeamPointsText, numberOfSecondTeamPointsText, newGame);
 
-        if (_currentChamp.NumberOfPlayedGames == NumberOfGamesInChamp) //проверка: является ли игра последней в турнире
+        if (_currentChamp.NumberOfPlayedGames == NumberOfGamesInChamp)
         {
             var sortedTeams = _currentChamp.TeamsInChamp.OrderByDescending(u => u.PointsInChamp)
                 .ThenByDescending(u => (u.GoalsInChamp - u.MissedGoalsInChamp)); 
@@ -416,6 +407,19 @@ public class SportManagerController : MonoBehaviour
             }
             Change_canvas(false, true, true,false);
         }
+    }
+
+    private void ChangeStringFieldsAfterGame(int numberOfFirstTeam, int numberOfSecondTeam, int numberOfFirstTeamPointsText,
+        int numberOfSecondTeamPointsText, Game newGame)
+    {
+        _currentChamp.TeamsInChamp[numberOfFirstTeam].GoalsInChamp += newGame.FirstTeamPoints;
+        _currentChamp.TeamsInChamp[numberOfSecondTeam].GoalsInChamp += newGame.SecondTeamPoints;
+        _currentChamp.TeamsInChamp[numberOfSecondTeam].MissedGoalsInChamp += newGame.FirstTeamPoints;
+        _currentChamp.TeamsInChamp[numberOfFirstTeam].MissedGoalsInChamp += newGame.SecondTeamPoints;
+        points_text[numberOfSecondTeamPointsText].text = newGame.FirstTeamPoints + ":" + newGame.SecondTeamPoints;
+        points_text[numberOfFirstTeamPointsText].text = newGame.SecondTeamPoints + ":" + newGame.FirstTeamPoints;
+        oh[numberOfFirstTeam].text = _currentChamp.TeamsInChamp[numberOfFirstTeam].PointsInChamp.ToString();
+        oh[numberOfSecondTeam].text = _currentChamp.TeamsInChamp[numberOfSecondTeam].PointsInChamp.ToString();
     }
 
     private void Clear()
