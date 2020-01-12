@@ -8,16 +8,34 @@ using System.Linq;
 
 public class SportManagerController : MonoBehaviour
 {
+    public const int NumberOfTeams = 4;
+    public const int NumberOfGamesInChamp = 6;
+
+    private const int MaxProfessionalRatingValue = 73;
+    private const int MinimalProfessionalRatingValue = 50;
+    private const int MaxAmateurRatingValue = 45;
+    private const int MinimalAmateurRatingValue = 35;
+    private const int MaxSemiProfessionalRatingValue = 55;
+    private const int MinimalSemiProfessionalRatingValue = 40;
+    private const int MinimalRatingForUpTeamToProfessional = 60;
+
+    private const int CostOfLowImprovement = 10;
+    private const int CostOfSemiImprovement = 100;
+    private const int CostOfHighImprovement = 1000;
 
     public class TeamClass
     {
+        private const int StartBudget = 100;
+        private const int WinPointsInChamp = 2;
+        private const int LoosePointsInChamp = 1;
+
         public double TeamRating; 
         public int PlaceInChamp;
         public int TeamNumber; 
         public int GoalsInChamp; 
         public int MissedGoalsInChamp;
         public string TeamName; 
-        public int Budget=100; 
+        public int Budget=StartBudget; 
         public int PointsInChamp; 
         public int WinsInChamp; 
         public int DefeatsInChamp; 
@@ -34,13 +52,13 @@ public class SportManagerController : MonoBehaviour
         public void ChangeFieldsWithWin()
         {
             WinsInChamp++;
-            PointsInChamp += 2;
+            PointsInChamp += WinPointsInChamp;
         }
 
         public void ChangeFieldsWithDefeat()
         {
             DefeatsInChamp++;
-            PointsInChamp += 1;
+            PointsInChamp += LoosePointsInChamp;
         }
 
         public void ResetStatisticsFields()
@@ -72,7 +90,7 @@ public class SportManagerController : MonoBehaviour
         {
             System.Random rnd = new System.Random();
             string[] country = { "Франция", "Германия", "США", "Италия", "Испания", "Бельгия", "Польша", "Китай", "Япония" }; ;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NumberOfTeams-1; i++)
             {
                 TeamsInChamp.Add(new TeamClass(country[rnd.Next(country.Length)] + "_" + (i + 1), rnd.Next(minRating, maxRating), i+1));
             }
@@ -231,8 +249,7 @@ public class SportManagerController : MonoBehaviour
     //i - служебная переменная, для определения места выхова функции
     private void Up_team(int i)
     {
-
-        if (_myGameTeam.TeamRating == 73)
+        if (_myGameTeam.TeamRating == MaxProfessionalRatingValue)
         {
             money_text.text = "Вы достигли максимума!";
             money_text.color = Color.red;
@@ -240,17 +257,17 @@ public class SportManagerController : MonoBehaviour
         }
         else
         {
-            if (_myGameTeam.TeamRating < 40)
+            if (_myGameTeam.TeamRating < MinimalSemiProfessionalRatingValue)
             {
-                p(10,i);
+                p(CostOfLowImprovement,i);
             }
-           else if (_myGameTeam.TeamRating < 50)
+           else if (_myGameTeam.TeamRating < MinimalProfessionalRatingValue)
             {
-                p(100,i);
+                p(CostOfSemiImprovement,i);
             }
-            else if(_myGameTeam.TeamRating<60)
+            else if(_myGameTeam.TeamRating<MinimalRatingForUpTeamToProfessional)
             {
-                p(1000,i);
+                p(CostOfHighImprovement,i);
             }
         }
         Write_about_team();
@@ -264,7 +281,7 @@ public class SportManagerController : MonoBehaviour
             _myGameTeam.Budget -= costOfImprovement;
             _myGameTeam.TeamRating += i;
 
-            if((_myGameTeam.TeamRating==40 || _myGameTeam.TeamRating==50 || _myGameTeam.TeamRating==60) && (i==1))
+            if((_myGameTeam.TeamRating==MinimalSemiProfessionalRatingValue || _myGameTeam.TeamRating==MinimalProfessionalRatingValue || _myGameTeam.TeamRating==MinimalRatingForUpTeamToProfessional) && (i==1))
             {
                 money_text.text = "Стоимость: " +(costOfImprovement * 10);
             
@@ -322,7 +339,7 @@ public class SportManagerController : MonoBehaviour
     {
         _currentChamp = new Champ(_myGameTeam);
 
-        int minRating=30, maxRating=65;
+        int minRating=MinimalAmateurRatingValue, maxRating=65;
 
         //определения уровня турнира (рейтинг команд, изменение коэффицента заработка за турнир)
         if (choose.value > 0)
@@ -331,21 +348,21 @@ public class SportManagerController : MonoBehaviour
 
             if (choose.value == 1)
             {
-                minRating = 30;
-                maxRating = 45;
+                minRating = MinimalAmateurRatingValue;
+                maxRating = MaxAmateurRatingValue;
                 _currentChamp.EarningsRatioForChamp = 1;
 
             }
             else if (choose.value == 2)
             {
-                minRating = 40;
-                maxRating = 55;
+                minRating = MinimalSemiProfessionalRatingValue;
+                maxRating = MaxSemiProfessionalRatingValue;
                 _currentChamp.EarningsRatioForChamp = 10;
             }
             else if (choose.value == 3)
             {
-                minRating = 50;
-                maxRating = 73;
+                minRating = MinimalProfessionalRatingValue;
+                maxRating = MaxProfessionalRatingValue;
                 _currentChamp.EarningsRatioForChamp = 100;
             }
 
@@ -385,7 +402,7 @@ public class SportManagerController : MonoBehaviour
         oh[numberOfFirstTeam].text = _currentChamp.TeamsInChamp[numberOfFirstTeam].PointsInChamp.ToString();
         oh[numberOfSecondTeam].text = _currentChamp.TeamsInChamp[numberOfSecondTeam].PointsInChamp.ToString();
 
-        if (_currentChamp.NumberOfPlayedGames == 6) //проверка: является ли игра последней в турнире
+        if (_currentChamp.NumberOfPlayedGames == NumberOfGamesInChamp) //проверка: является ли игра последней в турнире
         {
             var sortedTeams = _currentChamp.TeamsInChamp.OrderByDescending(u => u.PointsInChamp)
                 .ThenByDescending(u => (u.GoalsInChamp - u.MissedGoalsInChamp)); 
@@ -450,7 +467,7 @@ public class SportManagerController : MonoBehaviour
     
     public void Write_about_team()
     {
-        r.text= Math.Round(((_myGameTeam.TeamRating * 100) / 73), 1) + "%"; //подсчет рейтинга команды в процентах
+        r.text= Math.Round(((_myGameTeam.TeamRating * 100) / MaxProfessionalRatingValue), 1) + "%"; //подсчет рейтинга команды в процентах
 
         m.text = _myGameTeam.Budget.ToString();
         w.text = _myGameTeam.NumberOfAllWins.ToString();
